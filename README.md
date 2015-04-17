@@ -12,6 +12,8 @@ images to several USB disks in parallel. Compared to dd, pymultiwriter is
   pymultiwriter: it only shows USB disks.
 * Nicer: transfer speed, ETA and some smileys are displayed
 
+Since pymultiwriter needs udev and /proc, it only works on Linux.
+
 
 The usual statement about liability
 -----------------------------------
