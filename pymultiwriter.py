@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import pyudev
 import argparse
 from datetime import datetime
