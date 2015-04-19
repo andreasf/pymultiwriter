@@ -2,6 +2,7 @@
 import pyudev
 import argparse
 from datetime import datetime
+import errno
 import time
 import os
 import sys
@@ -122,7 +123,11 @@ class ConsoleUI(object):
         try:
             while True:
                 try:
-                    obj = self.queue.get(True, 0.1)
+                    try:
+                        obj = self.queue.get(True, 0.1)
+                    except IOError as e:
+                        if e.errno != errno.EINTR:
+                            raise
                     if isinstance(obj, ConnectedEvent):
                         self.connect(obj)
                     elif isinstance(obj, DisconnectedEvent):
