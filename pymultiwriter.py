@@ -36,12 +36,12 @@ def main():
 class ConnectedEvent(object):
     def __init__(self, device):
         self.device = device.device_node
-        self.size = int(device.attributes["size"]) * 512
+        self.size = device.attributes.asint("size") * 512
         name = "unknown USB disk"
-        if "vendor" in device.parent.attributes:
-            name = device.parent.attributes["vendor"].strip()
-        if "model" in device.parent.attributes:
-            name += " " + device.parent.attributes["model"].strip()
+        if "vendor" in device.parent.attributes.available_attributes:
+            name = device.parent.attributes.asstring("vendor").strip()
+        if "model" in device.parent.attributes.available_attributes:
+            name += " " + device.parent.attributes.asstring("model").strip()
         self.name = name
 
 
